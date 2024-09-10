@@ -1,0 +1,122 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": [
+        "hello",
+        "hey",
+        "hi",
+        "good day",
+        "greetings",
+        "what's up?",
+        "how is it going"
+      ],
+      "responses": [
+        "Hello! How can I assist you today?",
+        "Hey there! How can I help you?",
+        "Hi! How can I assist you with your health?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "cya",
+        "see you later",
+        "goodbye",
+        "have a good day",
+        "bye",
+        "see ya"
+      ],
+      "responses": [
+        "Goodbye! Take care.",
+        "Have a great day!",
+        "See you later!"
+      ]
+    },
+    {
+      "tag": "age",
+      "patterns": [
+        "how old",
+        "how old are you?",
+        "what is your age",
+        "how old are you",
+        "age?"
+      ],
+      "responses": [
+        "I'm a virtual assistant, age doesn't apply to me!",
+        "I don't have an age, but I'm here to help you."
+      ]
+    },
+    {
+      "tag": "name",
+      "patterns": [
+        "what is your name",
+        "what should I call you",
+        "what's your name?",
+        "who are you?",
+        "can you tell me your name"
+      ],
+      "responses": [
+        "You can call me HeartBot!",
+        "I'm HeartBot, your personal health assistant.",
+        "I'm HeartBot, here to assist you with heart-related queries."
+      ]
+    },
+    {
+      "tag": "heart_disease_intro",
+      "patterns": [
+        "what is heart disease?",
+        "explain heart disease",
+        "tell me about heart disease",
+        "heart disease overview"
+      ],
+      "responses": [
+        "Heart disease, also known as cardiovascular disease, refers to a range of conditions that affect the heart, including coronary artery disease, heart rhythm problems, and heart defects. It's a leading cause of death globally."
+      ]
+    },
+    {
+      "tag": "heart_disease_symptoms",
+      "patterns": [
+        "what are the symptoms of heart disease?",
+        "signs of heart disease",
+        "heart disease symptoms"
+      ],
+      "responses": [
+        "Common symptoms of heart disease include chest pain, shortness of breath, fatigue, dizziness, nausea, and palpitations. However, symptoms can vary depending on the specific condition."
+      ]
+    },
+    {
+      "tag": "heart_disease_prevention",
+      "patterns": [
+        "how can I prevent heart disease?",
+        "heart disease prevention tips",
+        "reduce risk of heart disease"
+      ],
+      "responses": [
+        "To prevent heart disease, it's essential to maintain a healthy lifestyle. This includes regular exercise, a balanced diet low in saturated fats and cholesterol, maintaining a healthy weight, not smoking, and managing stress."
+      ]
+    },
+    {
+      "tag": "consult_doctor",
+      "patterns": [
+        "who should I consult for heart disease?",
+        "find a doctor for heart disease",
+        "heart disease consultation"
+      ],
+      "responses": [
+        "You should consult a cardiologist for heart disease. You can find one in your area by searching online or asking your primary care physician for a referral."
+      ]
+    },
+    {
+    "tag": "avoid_things",
+    "patterns": [
+      "What should I avoid to prevent heart disease?",
+      "List of things to avoid for heart health",
+      "What habits should I avoid for a healthy heart?"
+    ],
+    "responses": [
+      "To prevent heart disease, it's important to avoid certain habits and factors that can increase your risk. These include smoking, excessive alcohol consumption, a diet high in saturated and trans fats, sedentary lifestyle, and stress. Maintaining a healthy weight, exercising regularly, eating a balanced diet rich in fruits, vegetables, and whole grains, and managing stress are key to heart health."
+    ]
+  }
+  ]
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+    body {
+        background-image: url("{{ url_for('static', filename='back.jpg') }}");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        margin: 0; /* Remove default body margin */
+        font-family: 'Arial', sans-serif; /* Set a default font family */
+    }
+
+    /* Other styles for your content */
+    /* ... */
+
+    </style>
+</head>
+<body>
+    <a href="/chat_bot" class="chatbot-button">Open Chatbot for FAQS</a>
+    <div class="form-container">
+        <h2>Heart disease detection form</h2>
+
+        <form action="/dashboard" method="post">
+            <div class="form-group">
+                <label for="Name">Name:</label>
+                <input type="text" id="Name" name="Name" value="{{ Name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" id="phone_number" name="phone_number" value="{{ phone_number }}" required>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="text" id="Email" name="Email" value="{{ Email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="clusters">Clusters(0: not likely,1: likely, 2: most likely):</label>
+                <input type="text" id="clusters" name="clusters" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cholesterol" title="Examination Feature | Cholesterol (1: normal, 2: above normal, 3: well above normal):">Cholesterol (1: normal, 2: above normal, 3: well above normal):</label>
+                <input type="text" id="cholesterol" name="cholesterol" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gluc">Glucose(1: normal, 2: above normal, 3: well above normal):</label>
+                <input type="text" id="gluc" name="gluc" required>
+            </div>
+
+            <div class="form-group">
+                <label for="smoke" title="Indicate whether the person smokes or not.">Smoke (0: No, 1: Yes):</label>
+                <input type="text" id="smoke" name="smoke" pattern="[01]" maxlength="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="active" title="Indicate whether the person is physically active or not.">Active (0: No, 1: Yes):</label>
+                <input type="text" id="active" name="active" pattern="[01]" maxlength="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age_group" title="Select your age group from the options provided.">Age Group:</label>
+                <select id="age_group" name="age_group" required>
+                    <option value="" disabled selected>Select Age Group</option>
+                    <option value="0">Below 30</option>
+                    <option value="1">30-34</option>
+                    <option value="2">35-39</option>
+                    <option value="3">40-44</option>
+                    <option value="4">45-49</option>
+                    <option value="5">50-54</option>
+                    <option value="6">55-59</option>
+                    <option value="7">60 and above</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="height">Height (cm):</label>
+                <input type="text" id="height" name="height" required>
+            </div>
+
+            <div class="form-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="text" id="weight" name="weight" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ap_lo">AP Low:</label>
+                <input type="text" id="ap_lo" name="ap_lo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ap_hi">AP High:</label>
+                <input type="text" id="ap_hi" name="ap_hi" required>
+            </div>
+
+            <!-- Hidden input fields for BMI and MAP -->
+            <input type="hidden" id="bmi" name="bmi">
+            <input type="hidden" id="map" name="map">
+
+            <input type="submit" value="Predict">
+            <input type="submit" name="save_button" value="Save">
+
+        </form>
+    {% if prediction is defined %}
+        {% if prediction == [0] %}
+            <h2>Heart disease detected</h2>
+            <div class="recommendations">
+                <h3>Recommendations for Managing Heart Disease:</h3>
+                <ul>
+                    <li>Encourage a heart-healthy diet rich in fruits, vegetables, whole grains, and lean proteins.</li>
+                    <li>Promote regular exercise and physical activity most days of the week.</li>
+                    <li>Advise quitting smoking to reduce the risk of heart-related complications.</li>
+                    <li>Suggest stress-reducing techniques such as deep breathing exercises and meditation.</li>
+                    <li>Recommend maintaining a healthy weight through diet and exercise.</li>
+                    <li>Emphasize the importance of regular health check-ups and medication adherence.</li>
+                    <li>Encourage moderation in alcohol consumption and prioritizing good sleep habits.</li>
+                    <li>Stress the importance of social support networks for coping and adherence to lifestyle changes.</li>
+                </ul>
+            </div>
+        {% else %}
+            <h2>Heart disease not detected</h2>
+        {% endif %}
+    {% endif %}
+
+    <script>
+        // Function to calculate BMI
+        function calculateBMI() {
+            var weight = document.getElementById('weight').value;
+            var height = document.getElementById('height').value;
+            var bmi = (weight / ((height / 100) ** 2)).toFixed(2);
+            document.getElementById('bmi').value = bmi;
+        }
+
+        // Function to calculate MAP
+        function calculateMAP() {
+            var ap_lo = document.getElementById('ap_lo').value;
+            var ap_hi = document.getElementById('ap_hi').value;
+            var map = (((2 * parseInt(ap_lo)) + parseInt(ap_hi)) / 3).toFixed(2);
+            document.getElementById('map').value = map;
+        }
+
+        // Calculate BMI and MAP when the form is submitted
+        document.querySelector('form').addEventListener('submit', function() {
+            calculateBMI();
+            calculateMAP();
+        });
+
+        // Set the input values from form submission data
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('clusters').value = "{{ request.form['clusters'] if 'clusters' in request.form else '' }}";
+            document.getElementById('cholesterol').value = "{{ request.form['cholesterol'] if 'cholesterol' in request.form else '' }}";
+            document.getElementById('gluc').value = "{{ request.form['gluc'] if 'gluc' in request.form else '' }}";
+            document.getElementById('smoke').value = "{{ request.form['smoke'] if 'smoke' in request.form else '' }}";
+            document.getElementById('active').value = "{{ request.form['active'] if 'active' in request.form else '' }}";
+            document.getElementById('age_group').value = "{{ request.form['age_group'] if 'age_group' in request.form else '' }}";
+            document.getElementById('height').value = "{{ request.form['height'] if 'height' in request.form else '' }}";
+            document.getElementById('weight').value = "{{ request.form['weight'] if 'weight' in request.form else '' }}";
+            document.getElementById('ap_lo').value = "{{ request.form['ap_lo'] if 'ap_lo' in request.form else '' }}";
+            document.getElementById('ap_hi').value = "{{ request.form['ap_hi'] if 'ap_hi' in request.form else '' }}";
+        });
+    </script>
+    </div>
+</body>
+</html>

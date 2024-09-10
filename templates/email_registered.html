@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Already Registered</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+    body {
+    background-image: url("{{ url_for('static', filename='backauth.jpg') }}");
+    background-size: cover; /* Make the background image cover the entire body */
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top: 170px;">
+        <div class="alert alert-danger" role="alert">
+            Email is already registered.
+        </div>
+        <a href="/login" class="btn btn-primary">Login</a>
+    </div>
+</body>
+</html>

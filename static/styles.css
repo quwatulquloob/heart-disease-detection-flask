@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    background: url('/static/backg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-left: 335px;
+}
+
+h1 {
+    text-align: center;
+    color: #87A922; /* Text color */
+    background-color: white; /* Background color */
+}
+
+#chat-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 10px;
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.user-message {
+    background-color: #e2f0cb;
+}
+
+.chatbot-message {
+    background-color: #d2d2d2;
+}
+
+#user-input-form {
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+     font-weight: bold;
+     font-size: 18px;
+}
+
+.send-button {
+    width: 15%;
+    padding: 10px;
+    background-color: #2AAA8A;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-right: 250px;
+}
